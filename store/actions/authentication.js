@@ -55,7 +55,7 @@ export const login = (userData, navigation) => {
       let decodedUser = jwt_decode(user.token);
       setAuthToken(user.token);
       await dispatch(setCurrentUser(decodedUser));
-      navigation.navigate("Homepage");
+      navigation.replace("Menu");
     } catch (error) {
       console.error(error);
     }

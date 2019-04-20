@@ -8,9 +8,28 @@ class HomePage extends Component {
   static navigationOptions = {
     title: "Home"
   };
+  async componentDidMount() {
+    await this.props.fetchItems()
+  }
   render() {
-    return <Text>Home Page</Text>;
+    return (
+    
+        <></>
+
+    );
   }
 }
 
-export default HomePage;
+
+
+const mapStateToProps = state => {
+  return {
+    items: state.items
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  fetchItems: () =>
+    dispatch(actionCreators.fetchItems())
+});
+export default connect(mapStateToProps,mapDispatchToProps)(HomePage);

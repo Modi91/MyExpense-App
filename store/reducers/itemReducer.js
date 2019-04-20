@@ -6,7 +6,7 @@ const initialState = {
   items: [],
   categories: [],
   item: {},
-  loading: false
+  loading: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,7 +15,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         items: action.payload,
-        loading: true
+        loading: false
       };
     case actionTypes.CREATE_ITEM:
       return {
@@ -27,13 +27,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         items: [...state.items],
-        loading: true
+        loading: false
       };
     case actionTypes.FETCH_ITEM_DETAIL:
       return {
         ...state,
         item: action.payload,
-        loading: true
+        loading: false
       };
     case actionTypes.DELETE_ITEM:
       let items = state.items.filter(item => item.id !== action.payload);
@@ -41,7 +41,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         items: [...items],
-        loading: true
+        loading: false
       };
     case actionTypes.FETCH_CATEGORIES:
       return {

@@ -1,12 +1,13 @@
 import { createStackNavigator } from "react-navigation";
 
 import Login from "../Authntication/Login";
-import Homepage from "../../Components/Homepage";
-
+import Menu from "../../Components/Menu";
+import Studen from "../../Components/StudentScan";
 const AuthStack = createStackNavigator(
   {
     Login: Login,
-    Homepage: Homepage
+    Menu: Menu,
+    Studen: Studen,
   },
   {
     initialRouteName: "Login",
