@@ -4,7 +4,8 @@ export {
   updateItem,
   deleteItem,
   fetchItemDetail,
-  fetchCategories
+  fetchCategories,
+  filterItems
 } from "./itemActions";
 
 export {

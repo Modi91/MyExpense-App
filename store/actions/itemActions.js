@@ -21,7 +21,19 @@ export const fetchItems = () => {
     }
   };
 };
-
+export const filterItems = (categories) => {
+  
+  return async dispatch => {
+    try {
+      dispatch({
+        type: actionTypes.FILTER_ITEMS,
+        payload: categories
+      });
+    } catch (error) {
+      console.log("Something went wrong with ", error);
+    }
+  };
+};
 export const fetchCategories = () => {
   return async dispatch => {
     try {

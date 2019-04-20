@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { Text, View, Button, Icon, ListItem } from "native-base";
-
+import { connect } from "react-redux";
+import * as actionCreators from "../../store/actions";
 
 class MenuPage extends Component {
   render() {
     let { category } = this.props
-    console.log("menu ==> ", category)
     return (
         <View style={{marginHorizontal:2, marginVertical:2}}>
-            <Button>
-                <Text>
+            <Button onPress={() => this.props.filterItems(category.name)}>
+                <Text style={{fontSize:25}}>
                     {category.name}
                 </Text>
             </Button>
@@ -17,8 +17,12 @@ class MenuPage extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => ({
+  filterItems: (category) =>
+    dispatch(actionCreators.filterItems(category))
+});
 
-export default MenuPage;
+export default connect(null,mapDispatchToProps)(MenuPage);
 
 // menu ==>  Object {
 //   "category": Object {
