@@ -1,15 +1,13 @@
 import { createStackNavigator } from "react-navigation";
 
-import Homepage from "../Homepage";
-import StudentList from "../Student/StudentList/index";
+import Menu from "../Menu";
 
 const StudentStack = createStackNavigator(
   {
-    Home: Homepage,
-    StudentList: StudentList
+    Menu: Menu,
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Menu",
     defaultNavigationOptions: {
       headerTintColor: "white",
       headerStyle: {
