@@ -4,6 +4,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   items: [],
+  filterItems:[],
   categories: [],
   item: {},
   loading: true
@@ -14,35 +15,23 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_ITEMS:
       return {
         ...state,
-        items: action.payload,
+        items: action.payload.items,
+        filterItems: action.payload.items,
         loading: false
       };
-    case actionTypes.CREATE_ITEM:
+    case actionTypes.FILTER_ITEMS:
+    if (action.payload === "All"){
       return {
         ...state,
-        items: state.items.concat(action.payload)
+        filterItems:state.items
       };
-    case actionTypes.UPDATE_ITEM:
-      let updatedItem = state.items.find(item => item.id === action.payload.id);
+    }else{
+      let fiterItemsObj = state.items.filter(item => item.category.name === action.payload)
       return {
         ...state,
-        items: [...state.items],
-        loading: false
+        filterItems: fiterItemsObj
       };
-    case actionTypes.FETCH_ITEM_DETAIL:
-      return {
-        ...state,
-        item: action.payload,
-        loading: false
-      };
-    case actionTypes.DELETE_ITEM:
-      let items = state.items.filter(item => item.id !== action.payload);
-
-      return {
-        ...state,
-        items: [...items],
-        loading: false
-      };
+    }
     case actionTypes.FETCH_CATEGORIES:
       return {
         ...state,

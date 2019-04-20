@@ -15,3 +15,5 @@ export const DELETE_ITEM = "DELETE_ITEM";
 export const FETCH_ITEM_DETAIL = "FETCH_ITEM_DETAIL";
 
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
+
+export const FILTER_ITEMS = "FILTER_ITEMS";

@@ -7,28 +7,35 @@ import Category from "./Category";
 import MenuRow from "./MenuRow";
 class MenuPage extends Component {
   static navigationOptions = {
-    title: "Menu"
+    title: "المقصف"
   };
   async componentDidMount() {
     await this.props.fetchItems()
     await this.props.fetchCategories()
   }
   render() {
-    let { items , loading , categories} = this.props.itemsL
+    let { filterItems , loading , categories} = this.props.itemsL
     if (loading){
       return(
         <></>
       )
     }else{
-      let MenuRowL = items.items.map(item => <MenuRow menu={item} key={item.id}/>)
+      let MenuRowL = filterItems.map(item => <MenuRow menu={item} key={item.id}/>)
       let categoriRow = categories.map(category => <Category category={category} key={category.id}/>)
       return (
         <Content>
           <View>
-            <View style={{flex: 1, flexDirection: 'row'}}>
+            <View style={{alignContent:"flex-start",flexDirection:"row", flexWrap:"wrap", justifyContent:"center", marginTop:20}}>
               {categoriRow}
+              <View style={{marginHorizontal:2, marginVertical:2}}>
+                <Button onPress={() => this.props.filterItems("All")}>
+                    <Text style={{fontSize:25}}>
+                        الكل
+                    </Text>
+                </Button>
+              </View>
             </View>
-            <View style={{alignContent:"flex-start",flexDirection:"row", flexWrap:"wrap", justifyContent:"center"}}>
+            <View style={{alignContent:"flex-start",flexDirection:"row", flexWrap:"wrap", justifyContent:"center", marginTop:15}}>
               {MenuRowL}
             </View>
           </View>
@@ -48,7 +55,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   fetchItems: () => dispatch(actionCreators.fetchItems()),
-  fetchCategories: () => dispatch(actionCreators.fetchCategories())
+  fetchCategories: () => dispatch(actionCreators.fetchCategories()),
+  filterItems: (category) =>
+    dispatch(actionCreators.filterItems(category)),
 
 });
 export default connect(mapStateToProps,mapDispatchToProps)(MenuPage);
