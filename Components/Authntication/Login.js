@@ -71,6 +71,13 @@ class Login extends Component {
             <Text>Login</Text>
           </Button>
         </List>
+        <Button
+          full
+          onPress={() => this.props.navigation.replace("StudentScan")}
+          style={{ backgroundColor: "rgb(95, 130, 182)" }}
+        >
+          <Text>Scan</Text>
+        </Button>
       </Content>
     );
   }
