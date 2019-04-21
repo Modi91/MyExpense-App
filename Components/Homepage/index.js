@@ -9,18 +9,20 @@ class HomePage extends Component {
     title: "Home"
   };
   async componentDidMount() {
-    await this.props.fetchItems()
+    await this.props.fetchItems();
   }
   render() {
     return (
-    
-        <></>
-
+      <Button
+        full
+        onPress={() => this.props.navigation.replace("StudentScan")}
+        style={{ backgroundColor: "rgb(95, 130, 182)" }}
+      >
+        <Text>Scan</Text>
+      </Button>
     );
   }
 }
-
-
 
 const mapStateToProps = state => {
   return {
@@ -29,7 +31,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchItems: () =>
-    dispatch(actionCreators.fetchItems())
+  fetchItems: () => dispatch(actionCreators.fetchItems())
 });
-export default connect(mapStateToProps,mapDispatchToProps)(HomePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage);

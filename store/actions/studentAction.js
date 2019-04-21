@@ -4,7 +4,7 @@ import * as actionTypes from "./actionTypes";
 const instance = axios.create({
   // baseURL: "http://127.0.0.1:8000/api/"
   // baseURL: "http://172.20.10.4:30/api/"
-  baseURL: "http://172.20.10.2:30/api/"
+  baseURL: "http://172.20.10.2:30/api"
 });
 
 export const fetchStudentsList = () => {
@@ -35,7 +35,7 @@ export const fetchStudentDetail = (studentUrl, navigation) => {
         type: actionTypes.FETCH_STUDENT_DETAIL,
         payload: student
       });
-      navigation.replace("StudentDetail");
+      navigation.replace("Menu");
       console.log("student detail action", student);
     } catch (err) {
       console.error("Error while fetching a student", err);
