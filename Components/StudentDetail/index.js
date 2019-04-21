@@ -67,42 +67,37 @@ class StudentDetail extends Component {
   render() {
     student = this.props.student;
     return (
-      <Container>
-        <Header />
-        <Content>
-          <Card>
-            <CardItem>
-              <Body style={{ flexDirection: "row" }}>
-                <Text
-                  style={{
-                    marginHorizontal: 5,
-                    borderRightWidth: 5,
-                    borderColor: "black",
-                    borderStyle: "dotted",
-                    borderRadius: 1
-                  }}
-                >
-                  {student.name}
-                </Text>
-                <Text
-                  style={{
-                    marginHorizontal: 5
-                  }}
-                >
-                  {student.grade}
-                </Text>
-                <Text
-                  style={{
-                    marginHorizontal: 5
-                  }}
-                >
-                  limit {student.limit}
-                </Text>
-              </Body>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
+      <Card>
+        <CardItem>
+          <Body style={{ flexDirection: "row" }}>
+            <Text
+              style={{
+                marginHorizontal: 5,
+                borderRightWidth: 5,
+                borderColor: "black",
+                borderStyle: "dotted",
+                borderRadius: 1
+              }}
+            >
+              {student.name}
+            </Text>
+            <Text
+              style={{
+                marginHorizontal: 5
+              }}
+            >
+              {student.grade}
+            </Text>
+            <Text
+              style={{
+                marginHorizontal: 5
+              }}
+            >
+              limit {student.limit}
+            </Text>
+          </Body>
+        </CardItem>
+      </Card>
     );
   }
 }

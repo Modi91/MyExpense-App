@@ -4,7 +4,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   items: [],
-  filterItems:[],
+  filterItems: [],
   categories: [],
   item: {},
   loading: true
@@ -15,23 +15,25 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_ITEMS:
       return {
         ...state,
-        items: action.payload.items,
-        filterItems: action.payload.items,
+        items: action.payload,
+        filterItems: action.payload,
         loading: false
       };
     case actionTypes.FILTER_ITEMS:
-    if (action.payload === "All"){
-      return {
-        ...state,
-        filterItems:state.items
-      };
-    }else{
-      let fiterItemsObj = state.items.filter(item => item.category.name === action.payload)
-      return {
-        ...state,
-        filterItems: fiterItemsObj
-      };
-    }
+      if (action.payload === "All") {
+        return {
+          ...state,
+          filterItems: state.items
+        };
+      } else {
+        let fiterItemsObj = state.items.filter(
+          item => item.category.name === action.payload
+        );
+        return {
+          ...state,
+          filterItems: fiterItemsObj
+        };
+      }
     case actionTypes.FETCH_CATEGORIES:
       return {
         ...state,

@@ -4,10 +4,11 @@ import Login from "../Authntication/Login";
 import Menu from "../../Components/Menu";
 import StudentScan from "../StudentScan";
 import StudentDetail from "../StudentDetail";
-
+import HomePage from "../Homepage";
 const AuthStack = createStackNavigator(
   {
     Login: Login,
+    HomePage: HomePage,
     Menu: Menu,
     StudentScan: StudentScan,
     StudentDetail: StudentDetail
