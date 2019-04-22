@@ -6,7 +6,8 @@ import * as actionTypes from "./actionTypes";
 // import { setErrors } from "./errors";
 
 const instance = axios.create({
-  baseURL: "http://127.0.0.1:8000/api"
+  // baseURL: "http://127.0.0.1:8000/api"
+  baseURL: "http://172.20.10.2:30/api"
 });
 /* -- set Token to brow -- */
 const setAuthToken = token => {
@@ -55,7 +56,7 @@ export const login = (userData, navigation) => {
       let decodedUser = jwt_decode(user.token);
       setAuthToken(user.token);
       await dispatch(setCurrentUser(decodedUser));
-      navigation.replace("Menu");
+      navigation.replace("HomePage");
     } catch (error) {
       console.error(error);
     }

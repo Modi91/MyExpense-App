@@ -15,6 +15,7 @@ import * as actionCreators from "../../store/actions";
 import Category from "./Category";
 import Order from "../Order";
 import MenuRow from "./MenuRow";
+import StudentDetail from "../StudentDetail";
 class MenuPage extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: "المقصف"
@@ -25,8 +26,6 @@ class MenuPage extends Component {
   }
   render() {
     let { filterItems, loading, categories } = this.props.itemsL;
-    console.log("TCL: MenuPage -> render -> categories", categories);
-    console.log("TCL: MenuPage -> render -> filterItems", filterItems);
     if (loading) {
       return <></>;
     } else {
@@ -38,10 +37,17 @@ class MenuPage extends Component {
       ));
       return (
         <Content>
+          
           <View>
+
+            <View>
+              <StudentDetail />
+            </View>
+        <View>
+
             <Order />
           </View>
-          <View>
+
             <View
               style={{
                 alignContent: "flex-start",
