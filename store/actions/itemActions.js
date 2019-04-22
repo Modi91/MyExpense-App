@@ -4,7 +4,7 @@ import axios from "axios";
 import * as actionTypes from "./actionTypes";
 
 const instance = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/"
+  baseURL: "http://127.0.0.1:8000/api"
 });
 
 export const fetchItems = () => {
@@ -21,8 +21,7 @@ export const fetchItems = () => {
     }
   };
 };
-export const filterItems = (categories) => {
-  
+export const filterItems = categories => {
   return async dispatch => {
     try {
       dispatch({
@@ -66,7 +65,6 @@ export const fetchItemDetail = itemID => {
 };
 
 export const addItem = (item, history) => {
-  console.log("addItem ===> ", addItem);
   const formData = new FormData();
   formData.append("name", item.name);
   formData.append("price", item.price);
@@ -93,7 +91,6 @@ export const addItem = (item, history) => {
 };
 
 export const updateItem = (item, history) => {
-  console.log("TCL: updateItem -> item.id", item.id);
   const formData = new FormData();
   formData.append("id", item.id);
   formData.append("name", item.name);

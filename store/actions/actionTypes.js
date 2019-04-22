@@ -17,3 +17,6 @@ export const FETCH_ITEM_DETAIL = "FETCH_ITEM_DETAIL";
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 
 export const FILTER_ITEMS = "FILTER_ITEMS";
+
+export const CREATE_ORDER = "CREATE_ORDER";
+export const ADD_TO_CART = "ADD_TO_CART";

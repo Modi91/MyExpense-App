@@ -1,8 +1,9 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
+import { order } from "./orderActions";
 
 const instance = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/"
+  baseURL: "http://127.0.0.1:8000/api"
 });
 
 export const fetchStudentsList = () => {
@@ -30,6 +31,7 @@ export const fetchStudentDetail = studentID => {
         type: actionTypes.FETCH_STUDENT_DETAIL,
         payload: student
       });
+      dispatch(order);
       console.log("student detail action", student);
     } catch (err) {
       console.error("Error while fetching a student", err);
@@ -38,7 +40,6 @@ export const fetchStudentDetail = studentID => {
 };
 
 export const addStudent = (studentData, history) => {
-  console.log("student add ", studentData);
   const formData = new FormData();
   formData.append("parent_id", studentData.parent_id);
   formData.append("email", studentData.email);
@@ -58,7 +59,6 @@ export const addStudent = (studentData, history) => {
         type: actionTypes.STUDENT_ADD,
         payload: newStudent
       });
-      console.log("student add ", newStudent);
       history.push("/students");
     } catch (err) {
       console.error("Error while adding a student", err);
@@ -75,7 +75,6 @@ export const updateStudent = (studentData, history) => {
   formData.append("grade", studentData.grade);
   formData.append("limit", studentData.limit);
   formData.append("health", studentData.health);
-  console.log("studentData.image_file.name", studentData.image_file.name);
   if (studentData.image_file !== "") {
     formData.append("image", studentData.image_file);
   }
@@ -99,7 +98,6 @@ export const updateStudent = (studentData, history) => {
 };
 
 export const deleteStudent = (studentID, history) => {
-  console.log("[studentAction.js] history: ", history);
   history.push("/students");
   return async dispatch => {
     try {
