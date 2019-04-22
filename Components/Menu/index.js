@@ -13,12 +13,13 @@ import { connect } from "react-redux";
 import { Image } from "react-native";
 import * as actionCreators from "../../store/actions";
 import Category from "./Category";
+import Order from "../Order";
 import MenuRow from "./MenuRow";
 import StudentDetail from "../StudentDetail";
 class MenuPage extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: "المقصف"
-  };
+  });
   async componentDidMount() {
     await this.props.fetchItems();
     await this.props.fetchCategories();
@@ -36,10 +37,17 @@ class MenuPage extends Component {
       ));
       return (
         <Content>
+          
           <View>
+
             <View>
               <StudentDetail />
             </View>
+        <View>
+
+            <Order />
+          </View>
+
             <View
               style={{
                 alignContent: "flex-start",
@@ -56,6 +64,7 @@ class MenuPage extends Component {
                 </Button>
               </View>
             </View>
+
             <View
               style={{
                 alignContent: "flex-start",

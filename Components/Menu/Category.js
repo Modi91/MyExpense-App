@@ -5,24 +5,25 @@ import * as actionCreators from "../../store/actions";
 
 class MenuPage extends Component {
   render() {
-    let { category } = this.props
+    let { category } = this.props;
+    console.log("TCL: MenuPage -> render -> category", category);
     return (
-        <View style={{marginHorizontal:2, marginVertical:2}}>
-            <Button onPress={() => this.props.filterItems(category.name)}>
-                <Text style={{fontSize:25}}>
-                    {category.name}
-                </Text>
-            </Button>
-        </View>
+      <View style={{ marginHorizontal: 2, marginVertical: 2 }}>
+        <Button onPress={() => this.props.filterItems(category.name)}>
+          <Text style={{ fontSize: 25 }}>{category.name}</Text>
+        </Button>
+      </View>
     );
   }
 }
 const mapDispatchToProps = dispatch => ({
-  filterItems: (category) =>
-    dispatch(actionCreators.filterItems(category))
+  filterItems: category => dispatch(actionCreators.filterItems(category))
 });
 
-export default connect(null,mapDispatchToProps)(MenuPage);
+export default connect(
+  null,
+  mapDispatchToProps
+)(MenuPage);
 
 // menu ==>  Object {
 //   "category": Object {
@@ -37,4 +38,3 @@ export default connect(null,mapDispatchToProps)(MenuPage);
 //   "school": 2,
 //   "stock": 998,
 // }
-
