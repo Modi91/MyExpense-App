@@ -7,7 +7,11 @@ import {
   List,
   Content,
   Card,
-  CardItem
+  CardItem,
+  Left,
+  Right,
+  Row,
+  Col
 } from "native-base";
 import { connect } from "react-redux";
 import { Image } from "react-native";
@@ -37,45 +41,44 @@ class MenuPage extends Component {
       ));
       return (
         <Content>
-          
-          <View>
-
-            <View>
+          <Row>
+            <Col>
               <StudentDetail />
-            </View>
-        <View>
+            </Col>
+            <Col>
+              <Order />
+            </Col>
+          </Row>
 
-            <Order />
+          <View
+            style={{
+              alignContent: "flex-start",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              marginTop: 20
+            }}
+          >
+            {categoriRow}
+            <View style={{ marginHorizontal: 2, marginVertical: 2 }}>
+              <Button transparent onPress={() => this.props.filterItems("All")}>
+                <Text style={{ fontSize: 10, color: "rgb(196, 77, 88)" }}>
+                  الكل
+                </Text>
+              </Button>
+            </View>
           </View>
 
-            <View
-              style={{
-                alignContent: "flex-start",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                marginTop: 20
-              }}
-            >
-              {categoriRow}
-              <View style={{ marginHorizontal: 2, marginVertical: 2 }}>
-                <Button onPress={() => this.props.filterItems("All")}>
-                  <Text style={{ fontSize: 25 }}>الكل</Text>
-                </Button>
-              </View>
-            </View>
-
-            <View
-              style={{
-                alignContent: "flex-start",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                marginTop: 15
-              }}
-            >
-              {MenuRowL}
-            </View>
+          <View
+            style={{
+              alignContent: "flex-start",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              marginTop: 15
+            }}
+          >
+            {MenuRowL}
           </View>
         </Content>
       );

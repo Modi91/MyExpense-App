@@ -9,8 +9,13 @@ class MenuPage extends Component {
     console.log("TCL: MenuPage -> render -> category", category);
     return (
       <View style={{ marginHorizontal: 2, marginVertical: 2 }}>
-        <Button onPress={() => this.props.filterItems(category.name)}>
-          <Text style={{ fontSize: 25 }}>{category.name}</Text>
+        <Button
+          transparent
+          onPress={() => this.props.filterItems(category.name)}
+        >
+          <Text style={{ fontSize: 10, color: "rgb(196, 77, 88)" }}>
+            {category.name}
+          </Text>
         </Button>
       </View>
     );

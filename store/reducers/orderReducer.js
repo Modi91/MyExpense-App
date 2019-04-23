@@ -4,34 +4,34 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   order: {},
-  cart: []
+  cart: [],
+  loading: true
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD:
+    case actionTypes.CREATE_ORDER:
+      console.log("creat order reducer", action.payload);
       return {
         ...state,
-        order: action.payload
+        order: action.payload,
+        loading: false
       };
-    case actionTypes.addToCart:
-      let item = action.payload;
-      let addedItem = state.cart.find(
-        addedItem => addedItem.item.name === items.item.name
-      );
-      if (addedItem) {
-        addedItem.quantity++;
-        return {
-          ...state,
-          cart: [...state.cart]
-        };
-      } else {
-        return {
-          ...state,
-          cart: state.cart.concat(action.payload)
-        };
-      }
+    case actionTypes.ADD_TO_CART:
+      console.log("action.payload addToCart reducer", action.payload);
+      return {
+        ...state,
+        cart: state.cart.concat(action.payload)
+      };
 
+    case actionTypes.RETRIEVE_ORDER:
+      console.log("retrieve order reducer", action.payload);
+
+      return {
+        ...state,
+        order: action.payload,
+        loading: false
+      };
     default:
       return state;
   }

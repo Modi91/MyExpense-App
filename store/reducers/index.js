@@ -15,5 +15,5 @@ export default combineReducers({
   studentReducer: studentReducer,
   parents: parentsReducer,
   items: itemReducer,
-  cart: orderReducer
+  orderReducer: orderReducer
 });
