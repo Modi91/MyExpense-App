@@ -20,3 +20,4 @@ export const FILTER_ITEMS = "FILTER_ITEMS";
 
 export const CREATE_ORDER = "CREATE_ORDER";
 export const ADD_TO_CART = "ADD_TO_CART";
+export const RETRIEVE_ORDER = "RETRIEVE_ORDER";

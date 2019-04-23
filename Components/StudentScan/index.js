@@ -114,14 +114,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#000"
+    backgroundColor: "rgb(84, 97, 112)"
   },
   bottomBar: {
     position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "rgba(0,0,0,0.5)",
+    backgroundColor: "rgb(84, 97, 112)",
     padding: 15,
     flexDirection: "row"
   },

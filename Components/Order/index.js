@@ -17,30 +17,40 @@ import {
   Icon,
   Row
 } from "native-base";
+import ItemRow from "./ItemRow";
 
 class index extends Component {
+  componentDidMount() {
+    this.props.retrieveOrder(this.props.order.id);
+  }
   render() {
+    const orderId = this.props.order.id;
+    console.log("order index -> render -> orderId", orderId);
+    let itemRow = [];
+    if (this.props.order.cart_items !== undefined) {
+      itemRow = this.props.order.cart_items.map(item => (
+        <ItemRow key={item.id} item={item} />
+      ));
+    }
     return (
       <Card>
         <Text>الفاتورة</Text>
-        <Text>Item List</Text>
-        <Row>
+        <View>{itemRow}</View>
+        <Button transparent>
           <Icon
-            name="closecircle"
+            name="checkcircle"
             type="AntDesign"
-            style={{ color: "rgb(155, 166, 87)", fontSize: 25 }}
+            style={{ color: "blue" }}
+            onPress={() => this.props.retrieveOrder(orderId)}
           />
+        </Button>
+        <Button transparent>
           <Icon
-            name="minuscircle"
+            name="checkcircle"
             type="AntDesign"
-            style={{ color: "rgb(155, 166, 87)", fontSize: 25 }}
+            style={{ color: "rgb(78, 205, 196)" }}
           />
-        </Row>
-        <Icon
-          name="checkcircle"
-          type="AntDesign"
-          style={{ color: "rgb(155, 166, 87)", fontSize: 25 }}
-        />
+        </Button>
         <Footer>
           <FooterTab>
             <Text>المجموع:</Text>
@@ -51,4 +61,20 @@ class index extends Component {
   }
 }
 
-export default index;
+const mapStateToProps = state => {
+  return {
+    loading: state.orderReducer.loading,
+    order: state.orderReducer.order,
+    cart: state.orderReducer.cart
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    retrieveOrder: orderId => dispatch(actionCreators.retrieveOrder(orderId))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(index);

@@ -8,56 +8,99 @@ import {
   Card,
   CardItem,
   Left,
-  Right
+  Right,
+  Row
 } from "native-base";
 import { Image } from "react-native";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
+import NumericInput from "react-native-numeric-input";
 
 class MenuPage extends Component {
   state = {
-    quantity: 1
+    quantity: 0
   };
 
-  handleAddClick = () => {
-    this.props.addToCart(
-      this.props.orderId,
-      this.props.menu.name,
-      this.state.quantity
-    );
-  };
+  // handleAddClick = () => {
+  //   this.props.addToCart(
+  //     this.props.orderId,
+  //     this.props.menu,
+  //     this.state.quantity
+  //   );
+  // };
 
   render() {
+    let orderId;
+    if (this.props.orderReducer.loading) {
+      return <View />;
+    } else {
+      orderId = this.props.orderReducer.order.id;
+      console.log("TCL: MenuPage -> render -> orderId", orderId);
+    }
     let { menu } = this.props;
     console.log("TCL: MenuPage -> render -> menu", menu);
-    const order = this.props.order;
-    console.log("TCL: MenuPage -> render -> order", order);
 
     return (
       <Card style={{ width: "25%", flex: 0 }}>
         <CardItem>
           <Image
             source={{ uri: menu.image }}
-            style={{ height: 200, width: null, flex: 1 }}
+            style={{ height: 150, width: null, flex: 1 }}
             resizeMode="contain"
           />
         </CardItem>
         <CardItem>
-          <Left>
-            <Text style={{ fontSize: 20, color: "rgb(105, 2, 2)" }}>
+          <Row>
+            <Text style={{ fontSize: 10, color: "rgb(105, 2, 2)" }}>
               {menu.price}
             </Text>
-          </Left>
-          <Text style={{ fontSize: 15, textAlign: "center" }}>{menu.name}</Text>
-          <Right>
-            <Icon
-              name="pluscircle"
-              type="AntDesign"
-              danger
-              style={{ color: "rgb(155, 166, 87)", fontSize: 25 }}
-              onPress={this.handleAddClick}
-            />
-          </Right>
+          </Row>
+          <Row>
+            <Text
+              style={{
+                fontSize: 13,
+                textAlign: "center",
+                color: "rgb(84, 97, 112)"
+              }}
+            >
+              {menu.name}
+            </Text>
+          </Row>
+          <View>
+            <Row>
+              <NumericInput
+                initValue={this.state.quantity}
+                value={this.state.quantity}
+                onChange={value => this.setState({ quantity: value })}
+                totalWidth={70}
+                totalHeight={30}
+                iconSize={20}
+                minValue={0}
+                maxValue={150}
+                step={1}
+                rounded
+                textColor="rgb(78, 205, 196)"
+                iconStyle={{ color: "rgb(196, 77, 88)" }}
+                rightButtonBackgroundColor="rgb(242, 242, 242)"
+                leftButtonBackgroundColor="rgb(242, 242, 242)"
+              />
+            </Row>
+            <Row>
+              <Button transparent>
+                <Icon
+                  name="add-shopping-cart"
+                  type="MaterialIcons"
+                  danger
+                  style={{
+                    color: "rgb(78, 205, 196)"
+                  }}
+                  onPress={() =>
+                    this.props.addToCart(orderId, menu, this.state.quantity)
+                  }
+                />
+              </Button>
+            </Row>
+          </View>
         </CardItem>
       </Card>
     );
@@ -65,8 +108,9 @@ class MenuPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  order: state.order,
-  cart: state.cart
+  cart: state.cart,
+  orderReducer: state.orderReducer,
+  student: state.studentReducer.student
 });
 
 const mapDispatchToProps = dispatch => ({
