@@ -20,42 +20,36 @@ import {
 import ItemRow from "./ItemRow";
 
 class index extends Component {
-  componentDidMount() {
-    this.props.retrieveOrder(this.props.order.id);
-  }
+  //   componentDidMount() {
+  //     this.props.retrieveOrder(this.props.order.id);
+  //   }
   render() {
     const orderId = this.props.order.id;
     console.log("order index -> render -> orderId", orderId);
     let itemRow = [];
     if (this.props.order.cart_items !== undefined) {
       itemRow = this.props.order.cart_items.map(item => (
-        <ItemRow key={item.id} item={item} />
+        <ItemRow key={item.id} item={item} orderId={orderId} />
       ));
     }
     return (
       <Card>
-        <Text>الفاتورة</Text>
-        <View>{itemRow}</View>
+        <Text style={{ textAlign: "right", marginRight: "2%" }}>الفاتورة</Text>
+        <Row>
+          <View>{itemRow}</View>
+        </Row>
+
+        <Text style={{ textAlign: "right", marginRight: "2%" }}>
+          المجموع: {this.props.order.total}
+        </Text>
         <Button transparent>
           <Icon
-            name="checkcircle"
-            type="AntDesign"
-            style={{ color: "blue" }}
-            onPress={() => this.props.retrieveOrder(orderId)}
+            name="check"
+            type="Entypo"
+            style={{ color: "rgb(155, 166, 87)" }}
+            onPress={() => this.props.checkout(orderId)}
           />
         </Button>
-        <Button transparent>
-          <Icon
-            name="checkcircle"
-            type="AntDesign"
-            style={{ color: "rgb(78, 205, 196)" }}
-          />
-        </Button>
-        <Footer>
-          <FooterTab>
-            <Text>المجموع:</Text>
-          </FooterTab>
-        </Footer>
       </Card>
     );
   }
@@ -70,7 +64,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    retrieveOrder: orderId => dispatch(actionCreators.retrieveOrder(orderId))
+    retrieveOrder: orderId => dispatch(actionCreators.retrieveOrder(orderId)),
+    checkout: orderId => dispatch(actionCreators.checkout(orderId))
   };
 };
 

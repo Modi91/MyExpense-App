@@ -13,7 +13,13 @@ class MenuPage extends Component {
           transparent
           onPress={() => this.props.filterItems(category.name)}
         >
-          <Text style={{ fontSize: 10, color: "rgb(196, 77, 88)" }}>
+          <Text
+            style={{
+              fontSize: 10,
+              color: "rgb(196, 77, 88)",
+              fontWeight: "bold"
+            }}
+          >
             {category.name}
           </Text>
         </Button>
