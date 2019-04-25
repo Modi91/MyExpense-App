@@ -87,7 +87,13 @@ class MenuPage extends Component {
             {categoriRow}
             <View style={{ marginHorizontal: 2, marginVertical: 2 }}>
               <Button transparent onPress={() => this.props.filterItems("All")}>
-                <Text style={{ fontSize: 10, color: "rgb(196, 77, 88)" }}>
+                <Text
+                  style={{
+                    fontSize: 10,
+                    color: "rgb(196, 77, 88)",
+                    fontWeight: "bold"
+                  }}
+                >
                   الكل
                 </Text>
               </Button>

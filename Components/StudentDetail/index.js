@@ -9,9 +9,11 @@ import {
   CardItem,
   Body,
   Text,
-  Row
+  Row,
+  View
 } from "native-base";
 import { black } from "ansi-colors";
+import { StyleSheet } from "react-native";
 class StudentDetail extends Component {
   state = {
     allowedItems: []
@@ -29,17 +31,7 @@ class StudentDetail extends Component {
         <CardItem>
           <Body>
             <Row>
-              <Text
-                style={{
-                  marginHorizontal: 5,
-                  borderRightWidth: 5,
-                  borderColor: "black",
-                  borderStyle: "dotted",
-                  borderRadius: 1
-                }}
-              >
-                {student.name}
-              </Text>
+              <Text style={styles.container}>{student.name}</Text>
             </Row>
             <Row>
               <Text
@@ -77,6 +69,14 @@ const mapDispatchToProps = dispatch => {
       dispatch(actionCreators.fetchStudentDetail(studentID))
   };
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    textAlign: "center",
+    fontSize: 24
+  }
+});
 
 export default connect(
   mapStateToProps,

@@ -16,7 +16,13 @@ export {
   deleteStudent
 } from "./studentAction";
 
-export { order, addToCart, retrieveOrder } from "./orderActions";
+export {
+  order,
+  addToCart,
+  retrieveOrder,
+  removeItemFromCart,
+  checkout
+} from "./orderActions";
 
 export { checkForExpiredToken, login, logout } from "./authentication";
 export { resetErrors } from "./errors";

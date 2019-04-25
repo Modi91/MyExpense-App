@@ -3,8 +3,10 @@ import * as actionTypes from "./actionTypes";
 
 const instance = axios.create({
   //   baseURL: "http://127.0.0.1:8000/api/"
+
   // baseURL: "http://172.20.10.2:30/api/"
   baseURL: "http://172.20.10.2:30/api"
+
 });
 
 export const order = studentId => {
@@ -38,6 +40,7 @@ export const addToCart = (orderId, itemObj, quantity) => {
         type: actionTypes.ADD_TO_CART,
         payload: { item: itemObj, quantity: quantity }
       });
+      dispatch(retrieveOrder(orderId));
     } catch (error) {
       console.log("Somthing went wrong with ", error);
     }
@@ -54,6 +57,40 @@ export const retrieveOrder = orderId => {
       dispatch({
         type: actionTypes.RETRIEVE_ORDER,
         payload: order
+      });
+    } catch (error) {
+      console.log("Somthing went wrong with ", error);
+    }
+  };
+};
+
+export const removeItemFromCart = (itemId, orderId) => {
+  //   type: actionTypes.REMOVE_ITEM_FROM_CART,
+  //   payload: itemId
+  // });
+  return async dispatch => {
+    try {
+      dispatch({
+        type: actionTypes.REMOVE_ITEM_FROM_CART,
+        payload: itemId
+      });
+      //   dispatch(retrieveOrder(orderId));
+    } catch (error) {
+      console.log("Somthing went wrong with ", error);
+    }
+  };
+};
+
+export const checkout = orderId => {
+  console.log("checkout action", orderId);
+  return async dispatch => {
+    try {
+      const res = await instance.post(`checkout/${orderId}/`);
+      const checkout = res.data;
+      console.log("action checkout ---> ", checkout);
+      dispatch({
+        type: actionTypes.CHECKOUT,
+        payload: checkout
       });
     } catch (error) {
       console.log("Somthing went wrong with ", error);
