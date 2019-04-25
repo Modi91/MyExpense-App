@@ -11,9 +11,9 @@ import orderReducer from "./orderReducer";
 // Combining the reducers
 export default combineReducers({
   auth: authReducer,
-  errors: errorReducer,
+  errorReducer: errorReducer,
   studentReducer: studentReducer,
-  parents: parentsReducer,
-  items: itemReducer,
+  parentsReducer: parentsReducer,
+  itemReducer: itemReducer,
   orderReducer: orderReducer
 });

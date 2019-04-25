@@ -15,6 +15,15 @@ import {
 import { black } from "ansi-colors";
 import { StyleSheet } from "react-native";
 class StudentDetail extends Component {
+  state = {
+    allowedItems: []
+  };
+
+  ItemsNotAllowed = () => {
+    student = this.props.student;
+    xItems = student.not_allowed;
+  };
+
   render() {
     student = this.props.student;
     return (
