@@ -23,9 +23,9 @@ class MenuPage extends Component {
     quantity: 0
   };
 
-  handleAddClick = () => {
-    this.setState({ quantity: this.state.quantity++ });
-  };
+  // handleAddClick = () => {
+  //   this.setState({ quantity: this.state.quantity++ });
+  // };
   // handleMinusClick = () => {
   //   this.setState({ quantity: this.state.quantity-- });
   // };
@@ -68,33 +68,33 @@ class MenuPage extends Component {
             </Text>
           </CardItem>
 
-          {/* <Row>
-              <NumericInput
-                initValue={this.state.quantity}
-                value={this.state.quantity}
-                onChange={value => this.setState({ quantity: value })}
-                totalWidth={70}
-                totalHeight={30}
-                iconSize={20}
-                minValue={0}
-                maxValue={150}
-                step={1}
-                rounded
-                textColor="rgb(78, 205, 196)"
-                iconStyle={{ color: "rgb(196, 77, 88)" }}
-                rightButtonBackgroundColor="rgb(242, 242, 242)"
-                leftButtonBackgroundColor="rgb(242, 242, 242)"
-              />
-            </Row> */}
+          <Row>
+            <NumericInput
+              initValue={this.state.quantity}
+              value={this.state.quantity}
+              onChange={value => this.setState({ quantity: value })}
+              totalWidth={70}
+              totalHeight={30}
+              iconSize={20}
+              minValue={0}
+              maxValue={150}
+              step={1}
+              rounded
+              textColor="rgb(78, 205, 196)"
+              iconStyle={{ color: "rgb(196, 77, 88)" }}
+              rightButtonBackgroundColor="rgb(242, 242, 242)"
+              leftButtonBackgroundColor="rgb(242, 242, 242)"
+            />
+          </Row>
 
-          <Button transparent>
+          {/* <Button transparent>
             <Icon
               name="pluscircleo"
               type="AntDesign"
               style={{ color: "rgb(155, 166, 87)", fontSize: 20 }}
               onPress={() => this.handleAddClick}
             />
-          </Button>
+          </Button> */}
 
           {/* <Button transparent>
             <Icon

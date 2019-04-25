@@ -10,9 +10,11 @@ class ItemRow extends Component {
           <Text style={{ textAlign: "right" }}>
             {this.props.item.item.name}
           </Text>
-
-          <Text style={{ textAlign: "right" }}>{this.props.item.quantity}</Text>
-
+          <ListItem>
+            <Text style={{ textAlign: "right" }}>
+              {this.props.item.quantity} الكمية:{" "}
+            </Text>
+          </ListItem>
           <Button transparent>
             <Icon
               name="x"
@@ -20,7 +22,7 @@ class ItemRow extends Component {
               style={{ color: "red" }}
               onPress={() =>
                 this.props.removeItemFromCart(
-                  this.props.item.item.id,
+                  this.props.item.id,
                   this.props.orderId
                 )
               }

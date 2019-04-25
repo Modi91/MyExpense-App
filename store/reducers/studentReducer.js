@@ -46,6 +46,11 @@ const classReducer = (state = initialState, action) => {
         students: [...newStudentList],
         loading: false
       };
+    case actionTypes.RESET_STUDENT:
+      return {
+        ...state,
+        student: action.payload
+      };
     default:
       return state;
   }

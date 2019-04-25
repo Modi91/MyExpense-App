@@ -3,7 +3,7 @@ import * as actionTypes from "./actionTypes";
 
 const instance = axios.create({
   //   baseURL: "http://127.0.0.1:8000/api/"
-  baseURL: "http://192.168.1.33:80/api/"
+  baseURL: "http://172.20.10.5:80/api/"
 });
 
 export const order = studentId => {
@@ -62,23 +62,20 @@ export const retrieveOrder = orderId => {
 };
 
 export const removeItemFromCart = (itemId, orderId) => {
-  //   type: actionTypes.REMOVE_ITEM_FROM_CART,
-  //   payload: itemId
-  // });
+  console.log("itemId --====>", itemId);
+  console.log("orderId --====>", orderId);
   return async dispatch => {
     try {
-      dispatch({
-        type: actionTypes.REMOVE_ITEM_FROM_CART,
-        payload: itemId
-      });
-      //   dispatch(retrieveOrder(orderId));
+      const res = await instance.delete(`cartItem/${itemId}/delete/`);
+
+      dispatch(retrieveOrder(orderId));
     } catch (error) {
       console.log("Somthing went wrong with ", error);
     }
   };
 };
 
-export const checkout = orderId => {
+export const checkout = (orderId, navigation) => {
   console.log("checkout action", orderId);
   return async dispatch => {
     try {
@@ -89,6 +86,11 @@ export const checkout = orderId => {
         type: actionTypes.CHECKOUT,
         payload: checkout
       });
+      dispatch({
+        type: actionTypes.RESET_STUDENT,
+        payload: {}
+      });
+      navigation.replace("StudentScan");
     } catch (error) {
       console.log("Somthing went wrong with ", error);
     }
