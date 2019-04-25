@@ -15,9 +15,11 @@ import {
   Button,
   Card,
   Icon,
-  Row
+  Row,
+  CardItem
 } from "native-base";
 import ItemRow from "./ItemRow";
+import { withNavigation } from "react-navigation";
 
 class index extends Component {
   //   componentDidMount() {
@@ -25,6 +27,7 @@ class index extends Component {
   //   }
   render() {
     const orderId = this.props.order.id;
+
     console.log("order index -> render -> orderId", orderId);
     let itemRow = [];
     if (this.props.order.cart_items !== undefined) {
@@ -42,14 +45,39 @@ class index extends Component {
         <Text style={{ textAlign: "right", marginRight: "2%" }}>
           المجموع: {this.props.order.total}
         </Text>
-        <Button transparent>
+
+        <CardItem>
+          {this.props.student.limit >= this.props.order.total ? (
+            <Button transparent>
+              <Icon
+                name="check"
+                type="Entypo"
+                style={{ color: "rgb(155, 166, 87)" }}
+                onPress={() =>
+                  this.props.checkout(orderId, this.props.navigation)
+                }
+              />
+            </Button>
+          ) : (
+            <Button transparent>
+              <Icon
+                name="x"
+                type="Feather"
+                style={{ color: "rgb(163, 0, 0)" }}
+                disabled={true}
+              />
+            </Button>
+          )}
+        </CardItem>
+
+        {/* <Button transparent>
           <Icon
             name="check"
             type="Entypo"
             style={{ color: "rgb(155, 166, 87)" }}
-            onPress={() => this.props.checkout(orderId)}
+            onPress={() => this.props.checkout(orderId, this.props.navigation)}
           />
-        </Button>
+        </Button> */}
       </Card>
     );
   }
@@ -59,17 +87,21 @@ const mapStateToProps = state => {
   return {
     loading: state.orderReducer.loading,
     order: state.orderReducer.order,
-    cart: state.orderReducer.cart
+    cart: state.orderReducer.cart,
+    student: state.studentReducer.student
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     retrieveOrder: orderId => dispatch(actionCreators.retrieveOrder(orderId)),
-    checkout: orderId => dispatch(actionCreators.checkout(orderId))
+    checkout: (orderId, navigation) =>
+      dispatch(actionCreators.checkout(orderId, navigation))
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(index);
+export default withNavigation(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(index)
+);

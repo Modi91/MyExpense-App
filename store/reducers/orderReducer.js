@@ -32,15 +32,15 @@ const reducer = (state = initialState, action) => {
         order: action.payload,
         loading: false
       };
-    case actionTypes.REMOVE_ITEM_FROM_CART:
-      console.log("action.payload", action.payload);
-      let cartItems = state.order.cart_items.filter(
-        item => item.id !== action.payload
-      );
-      return {
-        ...state,
-        order: cartItems
-      };
+    // case actionTypes.REMOVE_ITEM_FROM_CART:
+    //   console.log("action.payload", action.payload);
+    //   let cartItems = state.order.cart_items.filter(
+    //     item => item.id !== action.payload
+    //   );
+    //   return {
+    //     ...state,
+    //     cart: cartItems
+    //   };
     case actionTypes.CHECKOUT:
       return {
         ...state

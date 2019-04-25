@@ -23,3 +23,5 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const RETRIEVE_ORDER = "RETRIEVE_ORDER";
 export const CHECKOUT = "CHECKOUT";
 export const REMOVE_ITEM_FROM_CART = "REMOVE_ITEM_FROM_CART";
+
+export const RESET_STUDENT = "RESET_STUDENT";
