@@ -86,6 +86,7 @@ const mapDispatchToProps = dispatch => ({
   login: (userData, navigation) =>
     dispatch(actionCreators.login(userData, navigation))
 });
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
