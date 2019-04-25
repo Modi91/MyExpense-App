@@ -14,7 +14,7 @@ import {
   Col
 } from "native-base";
 import { connect } from "react-redux";
-import { Image } from "react-native";
+
 import * as actionCreators from "../../store/actions";
 import Category from "./Category";
 import Order from "../Order";
@@ -24,18 +24,43 @@ class MenuPage extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: "المقصف"
   });
+
+  // state = {
+  //   allowedItems: []
+  // };
   async componentDidMount() {
-    await this.props.fetchItems();
+    await this.props.fetchItems(this.props.student);
     await this.props.fetchCategories();
+    // await this.ItemsAllowed();
   }
+  // ItemsAllowed = () => {
+  //   student = this.props.student;
+  //   xItems = student.not_allowed;
+  //   IdXitems = xItems.map(item => item.id);
+  //   console.log("xItems ==> ", xItems);
+
+  //   let filterItems = this.props.itemsL.filterItems;
+  //   let allowedItemList = filterItems.filter(
+  //     item => !IdXitems.includes(item.id)
+  //   );
+
+  //   console.log("allowedItemList ==> ", allowedItemList);
+  //   this.setState({ allowedItems: allowedItemList });
+  // };
+
   render() {
     let { filterItems, loading, categories } = this.props.itemsL;
     if (loading) {
       return <></>;
     } else {
-      let MenuRowL = filterItems.map(item => (
-        <MenuRow menu={item} key={item.id} />
-      ));
+      let MenuRowL;
+      if (filterItems) {
+        console.log("Treger");
+        MenuRowL = filterItems.map(item => (
+          <MenuRow menu={item} key={item.id} />
+        ));
+      }
+
       let categoriRow = categories.map(category => (
         <Category category={category} key={category.id} />
       ));
@@ -88,12 +113,13 @@ class MenuPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    itemsL: state.items
+    itemsL: state.itemReducer,
+    student: state.studentReducer.student
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchItems: () => dispatch(actionCreators.fetchItems()),
+  fetchItems: student => dispatch(actionCreators.fetchItems(student)),
   fetchCategories: () => dispatch(actionCreators.fetchCategories()),
   filterItems: category => dispatch(actionCreators.filterItems(category))
 });
