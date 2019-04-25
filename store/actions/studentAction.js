@@ -5,7 +5,10 @@ import { order } from "./orderActions";
 const instance = axios.create({
   // baseURL: "http://127.0.0.1:8000/api/"
   // baseURL: "http://172.20.10.4:30/api/"
-  baseURL: "http://192.168.1.33:80/api/"
+
+  //  baseURL: "http://172.20.10.2:30/api/"
+  baseURL: "http://172.20.10.2:30/api"
+
 });
 
 export const fetchStudentDetail = (studentUrl, navigation) => {
