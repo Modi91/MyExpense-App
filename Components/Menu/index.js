@@ -20,6 +20,8 @@ import Category from "./Category";
 import Order from "../Order";
 import MenuRow from "./MenuRow";
 import StudentDetail from "../StudentDetail";
+import * as Animatable from "react-native-animatable";
+
 class MenuPage extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: "المقصف"
@@ -85,7 +87,11 @@ class MenuPage extends Component {
             }}
           >
             {categoriRow}
-            <View style={{ marginHorizontal: 2, marginVertical: 2 }}>
+            <Animatable.View
+              animation="rubberBand"
+              iterationCount="infinite"
+              style={{ marginHorizontal: 2, marginVertical: 2 }}
+            >
               <Button transparent onPress={() => this.props.filterItems("All")}>
                 <Text
                   style={{
@@ -97,7 +103,7 @@ class MenuPage extends Component {
                   الكل
                 </Text>
               </Button>
-            </View>
+            </Animatable.View>
           </View>
 
           <View

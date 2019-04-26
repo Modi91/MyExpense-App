@@ -14,6 +14,8 @@ import {
 } from "native-base";
 import { black } from "ansi-colors";
 import { StyleSheet } from "react-native";
+import * as Animatable from "react-native-animatable";
+
 class StudentDetail extends Component {
   state = {
     allowedItems: []
@@ -31,7 +33,16 @@ class StudentDetail extends Component {
         <CardItem>
           <Body>
             <Row>
-              <Text style={styles.container}>{student.name}</Text>
+              <Animatable.Text
+                animation="pulse"
+                easing="ease-out"
+                iterationCount="infinite"
+                style={{ flex: 1, textAlign: "center", fontSize: 24 }}
+              >
+                أهلاً {student.name} ! ❤️
+              </Animatable.Text>
+
+              {/* <Text style={styles.container}>أهلاً {student.name} !</Text> */}
             </Row>
             <Row>
               <Text

@@ -13,6 +13,7 @@ import {
   Footer,
   Col
 } from "native-base";
+import * as Animatable from "react-native-animatable";
 import { Image } from "react-native";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
@@ -42,7 +43,10 @@ class MenuPage extends Component {
     console.log("TCL: MenuPage -> render -> menu", menu);
 
     return (
-      <Card style={{ width: "25%", flex: 0 }}>
+      <Card
+        style={{ width: "25%", flex: 0 }}
+        className="animated infinite rubberBand delay-2s"
+      >
         <CardItem>
           <Image
             source={{ uri: menu.image }}
@@ -50,6 +54,7 @@ class MenuPage extends Component {
             resizeMode="contain"
           />
         </CardItem>
+
         <CardItem>
           <CardItem>
             <Text style={{ fontSize: 10, color: "rgb(105, 2, 2)" }}>
