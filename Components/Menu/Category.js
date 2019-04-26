@@ -2,13 +2,19 @@ import React, { Component } from "react";
 import { Text, View, Button, Icon, ListItem } from "native-base";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
+import * as Animatable from "react-native-animatable";
 
 class MenuPage extends Component {
   render() {
     let { category } = this.props;
     console.log("TCL: MenuPage -> render -> category", category);
     return (
-      <View style={{ marginHorizontal: 2, marginVertical: 2 }}>
+      <Animatable.View
+        animation="rubberBand"
+        iterationCount="2"
+        style={{ marginHorizontal: 2, marginVertical: 2 }}
+      >
+        {/* <View style={{ marginHorizontal: 2, marginVertical: 2 }}> */}
         <Button
           transparent
           onPress={() => this.props.filterItems(category.name)}
@@ -23,7 +29,8 @@ class MenuPage extends Component {
             {category.name}
           </Text>
         </Button>
-      </View>
+        {/* </View> */}
+      </Animatable.View>
     );
   }
 }
