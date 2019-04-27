@@ -10,7 +10,6 @@ const instance = axios.create({
   //   baseURL: "http://192.168.8.101:80/api"
 
   baseURL: "http://172.20.10.5:80/api/"
-
 });
 /* -- set Token to brow -- */
 const setAuthToken = token => {

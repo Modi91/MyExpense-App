@@ -13,13 +13,30 @@ class HomePage extends Component {
   }
   render() {
     return (
-      <Button
-        full
-        onPress={() => this.props.navigation.replace("StudentScan")}
-        style={{ backgroundColor: "rgb(95, 130, 182)" }}
-      >
-        <Text>Scan</Text>
+      <Button transparent>
+        <Icon
+          name="qrcode-scan"
+          type="MaterialCommunityIcons"
+          danger
+          style={{
+            color: "rgb(174, 139, 241)"
+            // marginLeft: "50%",
+            // marginTop: "70%",
+            // fontSize: 200
+          }}
+          onPress={() => this.props.navigation.replace("StudentScan")}
+        />
       </Button>
+      //   onPress={() => this.props.navigation.replace("StudentScan")}
+      //   style={{
+      //     borderColor: "rgb(174, 139, 241)",
+      //     width: "94%",
+      //     marginLeft: "3%",
+      //     marginTop: "45%"
+      //   }}
+      // >
+
+      // <Text style={{ color: "black" }}>مسح البطاقة</Text>
     );
   }
 }

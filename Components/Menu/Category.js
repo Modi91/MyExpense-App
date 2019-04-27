@@ -11,7 +11,7 @@ class MenuPage extends Component {
     return (
       <Animatable.View
         animation="rubberBand"
-        iterationCount="2"
+        // iterationCount="2"
         style={{ marginHorizontal: 2, marginVertical: 2 }}
       >
         {/* <View style={{ marginHorizontal: 2, marginVertical: 2 }}> */}

@@ -89,7 +89,7 @@ class MenuPage extends Component {
             {categoriRow}
             <Animatable.View
               animation="rubberBand"
-              iterationCount="infinite"
+              // iterationCount="infinite"
               style={{ marginHorizontal: 2, marginVertical: 2 }}
             >
               <Button transparent onPress={() => this.props.filterItems("All")}>
