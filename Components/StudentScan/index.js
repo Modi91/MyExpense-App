@@ -54,11 +54,12 @@ class StudentScan extends Component {
           <BarCodeScanner
             onBarCodeRead={this._handleBarCodeRead}
             style={{
-              height: Dimensions.get("window").height,
-              width: Dimensions.get("window").width
+              height: "50%",
+              width: "50%"
             }}
           />
         )}
+        {/* Dimensions.get("window").height, */}
 
         {this._maybeRenderUrl()}
 

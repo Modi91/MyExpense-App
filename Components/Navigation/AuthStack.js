@@ -21,7 +21,7 @@ const AuthStack = createStackNavigator(
     defaultNavigationOptions: {
       headerTintColor: "white",
       headerStyle: {
-        backgroundColor: "rgb(84, 97, 112)"
+        backgroundColor: "white"
       },
       headerTextStyle: {
         fontWeight: "bold"

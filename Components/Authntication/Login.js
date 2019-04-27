@@ -11,8 +11,11 @@ import {
   Input,
   Item,
   Content,
-  Header
+  Header,
+  Container,
+  View
 } from "native-base";
+import { ImageBackground } from "react-native";
 
 class Login extends Component {
   state = {
@@ -26,9 +29,23 @@ class Login extends Component {
     //   return <Profile />;
     // } else {
     return (
-      <Content>
-        <Header transparent />
-        <List>
+      // <Animatable.View
+      //   animation="fadeInRight"
+      //   delay={1200}
+      //   duration={700}
+      // >
+      // <ImageBackground
+      //   source={{ uri: "../../assets/background.png" }}
+      //   style={{
+      //     position: "absolute",
+      //     width: "400%",
+      //     height: "400%",
+      //     top: 0,
+      //     left: 0
+      //   }}
+      // >
+      <View>
+        <List style={{ marginTop: 200 }}>
           <ListItem style={{ borderBottomWidth: 0 }}>
             <Body>
               <Form>
@@ -64,14 +81,23 @@ class Login extends Component {
             </Body>
           </ListItem>
           <Button
-            full
+            bordered
+            rounded
+            activeOpacity={0.5}
             onPress={() => this.props.login(this.state, this.props.navigation)}
-            style={{ backgroundColor: "rgb(84, 97, 112)" }}
+            style={{
+              borderColor: "rgb(174, 139, 241)",
+              width: "94%",
+              marginLeft: "3%"
+            }}
           >
-            <Text>Login</Text>
+            <Text style={{ color: "rgb(174, 139, 241)", marginLeft: "45%" }}>
+              تسجيل دخول
+            </Text>
           </Button>
         </List>
-      </Content>
+      </View>
+      // </ImageBackground>
     );
   }
 }
