@@ -17,6 +17,15 @@ import { StyleSheet } from "react-native";
 import * as Animatable from "react-native-animatable";
 
 class StudentDetail extends Component {
+  state = {
+    allowedItems: []
+  };
+
+  ItemsNotAllowed = () => {
+    student = this.props.student;
+    xItems = student.not_allowed;
+  };
+
   render() {
     student = this.props.student;
     return (
