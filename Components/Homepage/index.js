@@ -13,30 +13,20 @@ class HomePage extends Component {
   }
   render() {
     return (
-      <Button transparent>
-        <Icon
-          name="qrcode-scan"
-          type="MaterialCommunityIcons"
-          danger
-          style={{
-            color: "rgb(174, 139, 241)"
-            // marginLeft: "50%",
-            // marginTop: "70%",
-            // fontSize: 200
-          }}
-          onPress={() => this.props.navigation.replace("StudentScan")}
-        />
-      </Button>
-      //   onPress={() => this.props.navigation.replace("StudentScan")}
-      //   style={{
-      //     borderColor: "rgb(174, 139, 241)",
-      //     width: "94%",
-      //     marginLeft: "3%",
-      //     marginTop: "45%"
-      //   }}
-      // >
-
-      // <Text style={{ color: "black" }}>مسح البطاقة</Text>
+      <View style={{flex: 1,
+        justifyContent: 'center', // Used to set Text Component Vertically Center
+        alignItems: 'center'}}>
+          <Icon
+            name="qrcode-scan"
+            type="MaterialCommunityIcons"
+            danger
+            style={{
+              color: "rgb(174, 139, 241)",
+              fontSize:500
+            }}
+            onPress={() => this.props.navigation.navigate("StudentScan")}
+          />
+      </View>
     );
   }
 }
@@ -48,7 +38,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchItems: () => dispatch(actionCreators.fetchItems())
+  fetchItems: () => dispatch(actionCreators.fetchItems()),
+  fetchStudentDetail: (studentUrl, navigation) =>
+      dispatch(actionCreators.fetchStudentDetail(studentUrl, navigation))
 });
 export default connect(
   mapStateToProps,

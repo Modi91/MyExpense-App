@@ -16,11 +16,13 @@ import {
   Card,
   Icon,
   Row,
-  CardItem
+  CardItem,
+  Left,
+  Right
 } from "native-base";
 import ItemRow from "./ItemRow";
 import { withNavigation } from "react-navigation";
-
+import {Image} from "react-native"
 class index extends Component {
   //   componentDidMount() {
   //     this.props.retrieveOrder(this.props.order.id);
@@ -36,49 +38,63 @@ class index extends Component {
       ));
     }
     return (
-      <Card>
-        <Text style={{ textAlign: "right", marginRight: "2%" }}>الفاتورة</Text>
-        <Row>
-          <View>{itemRow}</View>
-        </Row>
+      <View style={{}}>
+        <View style={{flexDirection: "row",flexWrap: "wrap"}}>
+          <Left>
+            <Text style={{ textAlign: "right", marginLeft: "5%", marginTop:"3%",fontSize:25}}>
+                {this.props.order.total}
+            </Text>
+          </Left>
+          <Right>
+              <Text style={{marginRight: "5%", textAlign: "right", marginTop:"3%",fontSize:25}}>الفاتورة</Text>
+          </Right>
+        </View>
+          <View>
+            {itemRow.length ?
+              <Content>
+                <View style={{flex: 1,
+                  justifyContent: 'center', // Used to set Text Component Vertically Center
+                  alignItems: 'center',
+                  height:150
+                  }}>
+                    <List>
+                      {itemRow} 
+                    </List>
+                </View>
+              </Content>
+              :
+              <View style={{justifyContent: "center",alignContent: "flex-start",flexDirection: "row",flexWrap: "wrap",}}>
+                <Image source={require("../../assets/emptycart.png")} 
+                    style={{width:90, height:90}}/>
+              </View> 
+            }
+          </View>
+        <View style={{justifyContent: "center",alignContent: "flex-start",flexDirection: "row",flexWrap: "wrap",}}>
+          {this.props.order.total === "0.00" ? <Text style={{fontSize:25, marginLeft:8, marginTop:8, marginBottom:8}}>قم بالشراء</Text> 
+              : this.props.student.limit >= this.props.order.total ? (
+              <Button transparent>
+                <Icon
+                  name="check"
+                  type="Entypo"
+                  style={{ color: "rgb(155, 166, 87)" }}
+                  onPress={() =>
+                    this.props.checkout(orderId, this.props.navigation)
+                  }
+                />
+              </Button>
+            ) : (
+              <Button transparent>
+                <Icon
+                  name="x"
+                  type="Feather"
+                  style={{ color: "rgb(163, 0, 0)" }}
+                  disabled={true}
+                />
+              </Button>
+            )}
+        </View>
 
-        <Text style={{ textAlign: "right", marginRight: "2%" }}>
-          المجموع: {this.props.order.total}
-        </Text>
-
-        <CardItem>
-          {this.props.student.limit >= this.props.order.total ? (
-            <Button transparent>
-              <Icon
-                name="check"
-                type="Entypo"
-                style={{ color: "rgb(155, 166, 87)" }}
-                onPress={() =>
-                  this.props.checkout(orderId, this.props.navigation)
-                }
-              />
-            </Button>
-          ) : (
-            <Button transparent>
-              <Icon
-                name="x"
-                type="Feather"
-                style={{ color: "rgb(163, 0, 0)" }}
-                disabled={true}
-              />
-            </Button>
-          )}
-        </CardItem>
-
-        {/* <Button transparent>
-          <Icon
-            name="check"
-            type="Entypo"
-            style={{ color: "rgb(155, 166, 87)" }}
-            onPress={() => this.props.checkout(orderId, this.props.navigation)}
-          />
-        </Button> */}
-      </Card>
+      </View>
     );
   }
 }

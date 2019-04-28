@@ -1,8 +1,8 @@
 // Buttom nav
 import { createAppContainer } from "react-navigation";
 
-import BottomNav from "./BottomNav";
+import AuthStack from "./AuthStack";
 
-const AppContainer = createAppContainer(BottomNav);
+const AppContainer = createAppContainer(AuthStack);
 
 export default AppContainer;

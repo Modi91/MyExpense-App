@@ -18,32 +18,21 @@ import {
 import { ImageBackground } from "react-native";
 
 class Login extends Component {
+
+  async componentDidMount() {
+    await this.props.checkForToken();
+    if (this.props.user){
+      console.log("User ===>", this.props.user)
+      this.props.navigation.replace("HomeScanPage");
+    }
+  }
   state = {
     username: "",
     password: ""
   };
 
   render() {
-    // if (this.props.user) {
-    //   return this.props.navigation.navigate("Profile");
-    //   return <Profile />;
-    // } else {
     return (
-      // <Animatable.View
-      //   animation="fadeInRight"
-      //   delay={1200}
-      //   duration={700}
-      // >
-      // <ImageBackground
-      //   source={{ uri: "../../assets/background.png" }}
-      //   style={{
-      //     position: "absolute",
-      //     width: "400%",
-      //     height: "400%",
-      //     top: 0,
-      //     left: 0
-      //   }}
-      // >
       <View>
         <List style={{ marginTop: 200 }}>
           <ListItem style={{ borderBottomWidth: 0 }}>
@@ -97,7 +86,6 @@ class Login extends Component {
           </Button>
         </List>
       </View>
-      // </ImageBackground>
     );
   }
 }
@@ -110,7 +98,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   login: (userData, navigation) =>
-    dispatch(actionCreators.login(userData, navigation))
+    dispatch(actionCreators.login(userData, navigation)),
+  checkForToken: () =>
+    dispatch(actionCreators.checkForExpiredToken())
 });
 
 export default connect(

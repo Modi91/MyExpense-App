@@ -18,9 +18,9 @@ class StudentScan extends Component {
   state = {
     hasCameraPermission: null,
     lastScannedUrl: null,
-    type: Camera.Constants.Type.front
+    type: Camera.Constants.Type.back
   };
-
+ 
   componentDidMount() {
     this._requestCameraPermission();
   }
@@ -57,6 +57,7 @@ class StudentScan extends Component {
               height: "50%",
               width: "50%"
             }}
+            type={this.state.type}
           />
         )}
         {/* Dimensions.get("window").height, */}

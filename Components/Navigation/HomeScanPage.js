@@ -1,19 +1,17 @@
 import { createStackNavigator } from "react-navigation";
-import Login from "../Authntication/Login";
-import HomeScanPage from "../Homepage";
 import { zoomIn } from 'react-navigation-transitions';
 import Menu from "../../Components/Menu";
 import StudentScan from "../StudentScan";
-const AuthStack = createStackNavigator(
+import HomePage from "../Homepage";
+const HomeScanPage = createStackNavigator(
   {
-    Login: Login,
-    HomeScanPage: HomeScanPage,
+    HomePage: HomePage,
     StudentScan: StudentScan,
     Menu: Menu,
   },
   {
+    initialRouteName: "HomePage",
     transitionConfig:() => zoomIn(1500),
-    initialRouteName: "Login",
     cardStyle: {
       backgroundColor: "rgb(248, 249, 250)"
     },
@@ -29,4 +27,4 @@ const AuthStack = createStackNavigator(
   }
 );
 
-export default AuthStack;
+export default HomeScanPage;
