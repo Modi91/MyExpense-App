@@ -29,7 +29,7 @@ class StudentDetail extends Component {
   render() {
     student = this.props.student;
     return (
-      <Card>
+      <View>
         <CardItem>
           <Body>
             <Row>
@@ -37,9 +37,9 @@ class StudentDetail extends Component {
                 animation="pulse"
                 easing="ease-out"
                 iterationCount="infinite"
-                style={{ flex: 1, textAlign: "center", fontSize: 24 }}
+                style={{ flex: 1, textAlign: "center", fontSize: 30, marginTop:20}}
               >
-                أهلاً {student.name} ! ❤️
+                أهلاً {student.name} ❤️
               </Animatable.Text>
 
               {/* <Text style={styles.container}>أهلاً {student.name} !</Text> */}
@@ -64,7 +64,7 @@ class StudentDetail extends Component {
             </Row>
           </Body>
         </CardItem>
-      </Card>
+      </View>
     );
   }
 }

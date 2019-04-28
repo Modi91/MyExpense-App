@@ -7,7 +7,7 @@ const instance = axios.create({
   // baseURL: "http://172.20.10.4:30/api/"
   // baseURL: "http://172.20.10.2:80/api/"
 
-  baseURL: "http://172.20.10.5:80/api/"
+  baseURL: "http://172.20.10.9:80/api/"
 });
 
 export const fetchStudentDetail = (studentUrl, navigation) => {
@@ -23,7 +23,7 @@ export const fetchStudentDetail = (studentUrl, navigation) => {
         payload: student
       });
       dispatch(order(student.id));
-      navigation.replace("Menu");
+      navigation.navigate("Menu")
 
       // console.log("student detail action", student);
     } catch (err) {

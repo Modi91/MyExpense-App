@@ -2,16 +2,9 @@ import React, { Component } from "react";
 import {
   Text,
   View,
-  Button,
-  Icon,
-  List,
+  Button, 
   Content,
-  Card,
-  CardItem,
-  Left,
-  Right,
-  Row,
-  Col
+  Tab, Tabs, ScrollableTab, Container,
 } from "native-base";
 import { connect } from "react-redux";
 
@@ -26,97 +19,63 @@ class MenuPage extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: "المقصف"
   });
-
-  // state = {
-  //   allowedItems: []
-  // };
   async componentDidMount() {
     await this.props.fetchItems(this.props.student);
     await this.props.fetchCategories();
-    // await this.ItemsAllowed();
   }
-  // ItemsAllowed = () => {
-  //   student = this.props.student;
-  //   xItems = student.not_allowed;
-  //   IdXitems = xItems.map(item => item.id);
-  //   console.log("xItems ==> ", xItems);
-
-  //   let filterItems = this.props.itemsL.filterItems;
-  //   let allowedItemList = filterItems.filter(
-  //     item => !IdXitems.includes(item.id)
-  //   );
-
-  //   console.log("allowedItemList ==> ", allowedItemList);
-  //   this.setState({ allowedItems: allowedItemList });
-  // };
-
   render() {
     let { filterItems, loading, categories } = this.props.itemsL;
     if (loading) {
       return <></>;
     } else {
       let MenuRowL;
+      let Tap;
       if (filterItems) {
-        console.log("Treger");
         MenuRowL = filterItems.map(item => (
           <MenuRow menu={item} key={item.id} />
-        ));
+          ))
+           Tap = categories.map(category => 
+            <Tab heading={category.name} key={`${category.id}`}> 
+              <View 
+                    style={{
+                      alignContent: "flex-start",
+                      flexDirection: "row",
+                      flexWrap: "wrap",
+                      justifyContent: "center",
+                      marginTop: 15
+                    }}>
+                   {filterItems.filter(item => item.category.name === category.name).map(item => (
+                      <MenuRow menu={item} key={item.id} />
+                    ))}   
+              </View>
+            </Tab>
+          )
       }
-
-      let categoriRow = categories.map(category => (
-        <Category category={category} key={category.id} />
-      ));
       return (
         <Content>
-          <Row>
-            <Col>
+          <View>
+            <View>
               <StudentDetail />
-            </Col>
-            <Col>
+            </View>
+            <View style={{borderRadius: 4, borderWidth: 0.5, borderColor: '#d6d7da',}} >
               <Order />
-            </Col>
-          </Row>
-
-          <View
-            style={{
-              alignContent: "flex-start",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              marginTop: 20
-            }}
-          >
-            {categoriRow}
-            <Animatable.View
-              animation="rubberBand"
-              // iterationCount="infinite"
-              style={{ marginHorizontal: 2, marginVertical: 2 }}
-            >
-              <Button transparent onPress={() => this.props.filterItems("All")}>
-                <Text
-                  style={{
-                    fontSize: 10,
-                    color: "rgb(196, 77, 88)",
-                    fontWeight: "bold"
-                  }}
-                >
-                  الكل
-                </Text>
-              </Button>
-            </Animatable.View>
+            </View>
           </View>
-
-          <View
-            style={{
-              alignContent: "flex-start",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              marginTop: 15
-            }}
-          >
-            {MenuRowL}
-          </View>
+          <Tabs style={{height:900}} transparent renderTabBar={()=> <ScrollableTab />}>
+            <Tab heading={"الكل"}>
+              <View
+                style={{
+                  alignContent: "flex-start",
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                  marginTop: 15
+                }}>
+                  {MenuRowL}
+                </View>
+            </Tab>
+            {Tap}
+          </Tabs>
         </Content>
       );
     }
