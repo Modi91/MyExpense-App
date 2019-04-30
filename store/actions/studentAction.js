@@ -7,7 +7,7 @@ const instance = axios.create({
   // baseURL: "http://172.20.10.4:30/api/"
   // baseURL: "http://172.20.10.2:80/api/"
 
-  baseURL: "http://172.20.10.9:80/api/"
+  baseURL: "http://172.20.10.9:70/api/"
 });
 
 export const fetchStudentDetail = (studentUrl, navigation) => {

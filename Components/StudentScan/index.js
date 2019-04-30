@@ -8,7 +8,8 @@ import {
   View,
   StatusBar,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Animated
 } from "react-native";
 import { BarCodeScanner, Permissions, Camera } from "expo";
 import { connect } from "react-redux";
@@ -18,7 +19,7 @@ class StudentScan extends Component {
   state = {
     hasCameraPermission: null,
     lastScannedUrl: null,
-    type: Camera.Constants.Type.back
+    type: Camera.Constants.Type.front
   };
  
   componentDidMount() {
@@ -43,29 +44,29 @@ class StudentScan extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        {this.state.hasCameraPermission === null ? (
-          <Text>Requesting for camera permission</Text>
-        ) : this.state.hasCameraPermission === false ? (
-          <Text style={{ color: "#fff" }}>
-            Camera permission is not granted
-          </Text>
-        ) : (
-          <BarCodeScanner
-            onBarCodeRead={this._handleBarCodeRead}
-            style={{
-              height: "50%",
-              width: "50%"
-            }}
-            type={this.state.type}
-          />
-        )}
-        {/* Dimensions.get("window").height, */}
+        <View style={styles.container}>
+          {this.state.hasCameraPermission === null ? (
+            <Text>Requesting for camera permission</Text>
+          ) : this.state.hasCameraPermission === false ? (
+            <Text style={{ color: "#fff" }}>
+              Camera permission is not granted
+            </Text>
+          ) : (
+            <BarCodeScanner
+              onBarCodeRead={this._handleBarCodeRead}
+              style={{
+                height: "50%",
+                width: "50%"
+              }}
+              type={this.state.type}
+            />
+          )}
+          {/* Dimensions.get("window").height, */}
 
-        {this._maybeRenderUrl()}
+          {this._maybeRenderUrl()}
 
-        <StatusBar hidden />
-      </View>
+          <StatusBar hidden />
+        </View>
     );
   }
 

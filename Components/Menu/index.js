@@ -4,7 +4,7 @@ import {
   View,
   Button, 
   Content,
-  Tab, Tabs, ScrollableTab, Container,
+  Tab, Tabs, ScrollableTab, Container,Root
 } from "native-base";
 import { connect } from "react-redux";
 
@@ -14,6 +14,7 @@ import Order from "../Order";
 import MenuRow from "./MenuRow";
 import StudentDetail from "../StudentDetail";
 import * as Animatable from "react-native-animatable";
+import { LinearGradient } from "expo";
 
 class MenuPage extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -52,31 +53,42 @@ class MenuPage extends Component {
           )
       }
       return (
-        <Content>
+        <Root>
+        <LinearGradient
+          colors={["#72B7E2", "#AE8BF1", "#3DDDD5"]}
+          style={{ width: "100%", height: "100%" }}
+        >
           <View>
             <View>
-              <StudentDetail />
+              <View sstyle={{borderRadius: 4, borderWidth: 0.5, borderColor: '#d6d7da',}}>
+                <StudentDetail />
+              </View>
+              <View style={{borderRadius: 4, borderWidth: 0.5, borderColor: '#d6d7da',}} >
+                <Order />
+              </View>
             </View>
-            <View style={{borderRadius: 4, borderWidth: 0.5, borderColor: '#d6d7da',}} >
-              <Order />
+            <View style={{height:928}}>
+              <Tabs transparent renderTabBar={()=> <ScrollableTab />}>
+                <Tab heading={"الكل"}>
+                <Content>
+                  <View
+                    style={{
+                      alignContent: "flex-start",
+                      flexDirection: "row",
+                      flexWrap: "wrap",
+                      justifyContent: "center",
+                      marginTop: 15
+                    }}>
+                        {MenuRowL}
+                    </View>
+                  </Content>
+                </Tab>
+                {Tap}
+              </Tabs>
             </View>
           </View>
-          <Tabs style={{height:900}} transparent renderTabBar={()=> <ScrollableTab />}>
-            <Tab heading={"الكل"}>
-              <View
-                style={{
-                  alignContent: "flex-start",
-                  flexDirection: "row",
-                  flexWrap: "wrap",
-                  justifyContent: "center",
-                  marginTop: 15
-                }}>
-                  {MenuRowL}
-                </View>
-            </Tab>
-            {Tap}
-          </Tabs>
-        </Content>
+        </LinearGradient>
+        </Root>
       );
     }
   }
