@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import { ListItem, List, Text, Button, Icon, View } from "native-base";
+import { ListItem, List, Text, Button, Icon, View, Badge } from "native-base";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 class ItemRow extends Component {
   render() {
     return (
-      <View style={{flexDirection: "row"}}>
-        <Text style={{ textAlign: "right", marginTop:10}}>
-          {this.props.item.quantity}
-        </Text>
-        <Text style={{ textAlign: "right", marginTop:10}}>
-          {` ${this.props.item.item.name} ===> `}
+      <View style={{ flexDirection: "row" }}>
+        <Badge success style={{ marginTop: 10 }}>
+          <Text>{this.props.item.quantity}</Text>
+        </Badge>
+        <Text style={{ textAlign: "right", marginTop: 10 }}>
+          {` ${this.props.item.item.name} `}
         </Text>
         <Button transparent>
           <Icon

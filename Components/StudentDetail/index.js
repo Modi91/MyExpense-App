@@ -10,7 +10,9 @@ import {
   Body,
   Text,
   Row,
-  View
+  View,
+  Right,
+  Left
 } from "native-base";
 import { black } from "ansi-colors";
 import { StyleSheet } from "react-native";
@@ -37,30 +39,39 @@ class StudentDetail extends Component {
                 animation="pulse"
                 easing="ease-out"
                 iterationCount="infinite"
-                style={{ flex: 1, textAlign: "center", fontSize: 30, marginTop:20}}
+                style={{
+                  flex: 1,
+                  textAlign: "center",
+                  fontSize: 30,
+                  marginTop: 20
+                }}
               >
                 أهلاً {student.name} ❤️
               </Animatable.Text>
 
               {/* <Text style={styles.container}>أهلاً {student.name} !</Text> */}
             </Row>
-            <Row>
-              <Text
-                style={{
-                  marginHorizontal: 5
-                }}
-              >
-                {student.grade}
-              </Text>
-            </Row>
-            <Row>
-              <Text
-                style={{
-                  marginHorizontal: 5
-                }}
-              >
-                limit {student.limit}
-              </Text>
+            <Row style={{ marginTop: 10 }}>
+              <Left>
+                <Text
+                  style={{
+                    marginHorizontal: 10,
+                    fontSize: 25
+                  }}
+                >
+                  الحد اليومي {student.limit}
+                </Text>
+              </Left>
+              <Right>
+                <Text
+                  style={{
+                    marginHorizontal: 10,
+                    fontSize: 25
+                  }}
+                >
+                  {student.grade}
+                </Text>
+              </Right>
             </Row>
           </Body>
         </CardItem>

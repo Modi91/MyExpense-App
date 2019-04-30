@@ -18,9 +18,9 @@ class StudentScan extends Component {
   state = {
     hasCameraPermission: null,
     lastScannedUrl: null,
-    type: Camera.Constants.Type.back
+    type: Camera.Constants.Type.front
   };
- 
+
   componentDidMount() {
     this._requestCameraPermission();
   }

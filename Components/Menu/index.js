@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import {
   Text,
   View,
-  Button, 
+  Button,
   Content,
-  Tab, Tabs, ScrollableTab, Container,
+  Tab,
+  Tabs,
+  ScrollableTab,
+  Container
 } from "native-base";
 import { connect } from "react-redux";
 
@@ -33,23 +36,26 @@ class MenuPage extends Component {
       if (filterItems) {
         MenuRowL = filterItems.map(item => (
           <MenuRow menu={item} key={item.id} />
-          ))
-           Tap = categories.map(category => 
-            <Tab heading={category.name} key={`${category.id}`}> 
-              <View 
-                    style={{
-                      alignContent: "flex-start",
-                      flexDirection: "row",
-                      flexWrap: "wrap",
-                      justifyContent: "center",
-                      marginTop: 15
-                    }}>
-                   {filterItems.filter(item => item.category.name === category.name).map(item => (
-                      <MenuRow menu={item} key={item.id} />
-                    ))}   
-              </View>
-            </Tab>
-          )
+        ));
+        Tap = categories.map(category => (
+          <Tab heading={category.name} key={`${category.id}`}>
+            <View
+              style={{
+                alignContent: "flex-start",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                marginTop: 15
+              }}
+            >
+              {filterItems
+                .filter(item => item.category.name === category.name)
+                .map(item => (
+                  <MenuRow menu={item} key={item.id} />
+                ))}
+            </View>
+          </Tab>
+        ));
       }
       return (
         <Content>
@@ -57,11 +63,21 @@ class MenuPage extends Component {
             <View>
               <StudentDetail />
             </View>
-            <View style={{borderRadius: 4, borderWidth: 0.5, borderColor: '#d6d7da',}} >
+            <View
+              style={{
+                borderRadius: 4,
+                borderWidth: 0.5,
+                borderColor: "#d6d7da"
+              }}
+            >
               <Order />
             </View>
           </View>
-          <Tabs style={{height:900}} transparent renderTabBar={()=> <ScrollableTab />}>
+          <Tabs
+            style={{ height: 980 }}
+            transparent
+            renderTabBar={() => <ScrollableTab />}
+          >
             <Tab heading={"الكل"}>
               <View
                 style={{
@@ -70,9 +86,10 @@ class MenuPage extends Component {
                   flexWrap: "wrap",
                   justifyContent: "center",
                   marginTop: 15
-                }}>
-                  {MenuRowL}
-                </View>
+                }}
+              >
+                {MenuRowL}
+              </View>
             </Tab>
             {Tap}
           </Tabs>

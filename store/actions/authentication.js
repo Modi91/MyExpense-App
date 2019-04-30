@@ -9,7 +9,7 @@ const instance = axios.create({
   //   baseURL: "http://127.0.0.1:8000/api/"
   //   baseURL: "http://192.168.8.101:80/api"
 
-  baseURL: "http://172.20.10.9:80/api/"
+  baseURL: "http://172.20.10.2:30/api/"
 });
 /* -- set Token to brow -- */
 const setAuthToken = token => {
@@ -27,15 +27,13 @@ export const checkForExpiredToken = () => {
   return async dispatch => {
     // Get token
     const token = await AsyncStorage.getItem("token");
-    console.log("token ===>", token)
+    console.log("token ===>", token);
 
     if (token) {
       const currentTime = Date.now() / 1000;
 
       // Decode token and get user info
       const user = jwt_decode(token);
-
-      
 
       // Check token expiration
       if (user.exp >= currentTime) {
