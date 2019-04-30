@@ -22,7 +22,6 @@ class Login extends Component {
   async componentDidMount() {
     await this.props.checkForToken();
     if (this.props.user){
-      console.log("User ===>", this.props.user)
       this.props.navigation.replace("HomeScanPage");
     }
   }

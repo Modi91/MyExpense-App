@@ -10,7 +10,9 @@ import {
   Body,
   Text,
   Row,
-  View
+  View,
+  Left,
+  Right
 } from "native-base";
 import { black } from "ansi-colors";
 import { StyleSheet } from "react-native";
@@ -29,15 +31,14 @@ class StudentDetail extends Component {
   render() {
     student = this.props.student;
     return (
-      <View>
-        <CardItem>
+        <View style={{width:"100%", height:180}}>
           <Body>
             <Row>
               <Animatable.Text
                 animation="pulse"
                 easing="ease-out"
                 iterationCount="infinite"
-                style={{ flex: 1, textAlign: "center", fontSize: 30, marginTop:20}}
+                style={{ flex: 1, textAlign: "center", fontSize: 45, marginTop:20}}
               >
                 أهلاً {student.name} ❤️
               </Animatable.Text>
@@ -45,26 +46,29 @@ class StudentDetail extends Component {
               {/* <Text style={styles.container}>أهلاً {student.name} !</Text> */}
             </Row>
             <Row>
-              <Text
-                style={{
-                  marginHorizontal: 5
-                }}
-              >
-                {student.grade}
-              </Text>
-            </Row>
-            <Row>
-              <Text
-                style={{
-                  marginHorizontal: 5
-                }}
-              >
-                limit {student.limit}
-              </Text>
+              <Left>
+                <Text
+                  style={{
+                    marginLeft: "5%",
+                    fontSize:25
+                  }}
+                >
+                  الحد اليومي {student.limit}
+                </Text>
+              </Left>
+              <Right>
+                  <Text
+                  style={{
+                    marginRight: "5%",
+                    fontSize:25
+                  }}
+                >
+                  {student.grade}
+                </Text>
+              </Right>
             </Row>
           </Body>
-        </CardItem>
-      </View>
+        </View>
     );
   }
 }

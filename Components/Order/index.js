@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component , Fragment} from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions";
 import {
@@ -18,19 +18,24 @@ import {
   Row,
   CardItem,
   Left,
-  Right
+  Right,
+  Badge,
+  Toast,
+  Root
 } from "native-base";
 import ItemRow from "./ItemRow";
 import { withNavigation } from "react-navigation";
 import {Image} from "react-native"
+import Overlay from "react-native-modal-overlay";
+
 class index extends Component {
-  //   componentDidMount() {
-  //     this.props.retrieveOrder(this.props.order.id);
-  //   }
+  state = {
+    modalVisible: false,
+  }
+
+  onClose = () => this.setState({ modalVisible: false });
   render() {
     const orderId = this.props.order.id;
-
-    console.log("order index -> render -> orderId", orderId);
     let itemRow = [];
     if (this.props.order.cart_items !== undefined) {
       itemRow = this.props.order.cart_items.map(item => (
@@ -45,55 +50,99 @@ class index extends Component {
                 {this.props.order.total}
             </Text>
           </Left>
+          <Body>
+            <View>
+              {itemRow.length ? 
+                  itemRow.length > 3 ?
+                  <View style={{alignContent:"flex-start",flexDirection:"row", flexWrap: "wrap", justifyContent: "center",}}>
+                      {itemRow[0]}
+                      {itemRow[1]}
+                      {itemRow[2]}
+                      <Text style={{fontSize:30}} onPress={() => this.setState({ modalVisible: true })}> OOO </Text> 
+                  </View> 
+                  :        
+                  <View style={{alignContent:"flex-start",flexDirection:"row", flexWrap: "wrap", justifyContent: "center",}}>
+                      {itemRow} 
+                  </View>
+                :
+                <View style={{justifyContent: "center",alignContent: "flex-start",flexDirection: "row",flexWrap: "wrap", marginTop:8}}>
+                  <Image source={require("../../assets/emptycart.png")} 
+                      style={{width:90, height:90}}/>
+                </View> 
+              }
+            </View>
+          </Body>
           <Right>
               <Text style={{marginRight: "5%", textAlign: "right", marginTop:"3%",fontSize:25}}>الفاتورة</Text>
           </Right>
         </View>
-          <View>
-            {itemRow.length ?
-              <Content>
-                <View style={{flex: 1,
-                  justifyContent: 'center', // Used to set Text Component Vertically Center
-                  alignItems: 'center',
-                  height:150
-                  }}>
-                    <List>
-                      {itemRow} 
-                    </List>
-                </View>
-              </Content>
-              :
-              <View style={{justifyContent: "center",alignContent: "flex-start",flexDirection: "row",flexWrap: "wrap",}}>
-                <Image source={require("../../assets/emptycart.png")} 
-                    style={{width:90, height:90}}/>
-              </View> 
-            }
-          </View>
-        <View style={{justifyContent: "center",alignContent: "flex-start",flexDirection: "row",flexWrap: "wrap",}}>
-          {this.props.order.total === "0.00" ? <Text style={{fontSize:25, marginLeft:8, marginTop:8, marginBottom:8}}>قم بالشراء</Text> 
+        <View style={{justifyContent: "center",alignContent: "flex-start",flexDirection: "row",flexWrap: "wrap", marginTop:10, marginBottom:50}}>
+          {this.props.order.total === "0.00" ? <Text style={{fontSize:30, marginLeft:8, marginTop:8, marginBottom:8}}>قم بالشراء</Text> 
               : this.props.student.limit >= this.props.order.total ? (
-              <Button transparent>
+              
                 <Icon
                   name="check"
                   type="Entypo"
-                  style={{ color: "rgb(155, 166, 87)" }}
+                  style={{ color: "green",}}
                   onPress={() =>
                     this.props.checkout(orderId, this.props.navigation)
                   }
                 />
-              </Button>
+              
             ) : (
-              <Button transparent>
+              
                 <Icon
                   name="x"
                   type="Feather"
-                  style={{ color: "rgb(163, 0, 0)" }}
-                  disabled={true}
+                  style={{ color: "rgb(163, 0, 0)",
+                  }}
+                  
                 />
-              </Button>
+              
             )}
         </View>
-
+        <Overlay
+              visible={this.state.modalVisible}
+              onClose={this.onClose}
+              closeOnTouchOutside
+              animationType="zoomIn"
+              containerStyle={{ backgroundColor: "rgba(114, 183, 226,0.78)" }}
+              childrenWrapperStyle={{ backgroundColor: "#eee" }}
+              animationDuration={500}
+            >
+              {(hideModal, overlayState) => (
+                <Fragment>
+                    <View style={{alignContent:"flex-start",flexDirection:"row", flexWrap: "wrap", justifyContent: "center",}}>
+                      {itemRow}
+                    </View>
+                    <View style={{justifyContent: "center",alignContent: "flex-start",flexDirection: "row",flexWrap: "wrap",}}>
+                    {
+                      this.props.student.limit >= this.props.order.total ? (
+                        <Button transparent>
+                          <Icon
+                            name="check"
+                            type="Entypo"
+                            style={{ color: "rgb(155, 166, 87)" }}
+                            onPress={() =>
+                              this.props.checkout(orderId, this.props.navigation)
+                            }
+                          />
+                        </Button>
+                      ) : (
+                        <Button transparent>
+                          <Icon
+                            name="x"
+                            type="Feather"
+                            style={{ color: "rgb(163, 0, 0)" }}
+                            disabled={true}
+                          />
+                        </Button>
+                      )
+                    }
+                    </View>
+                </Fragment>
+              )}
+            </Overlay>
       </View>
     );
   }

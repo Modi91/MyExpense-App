@@ -1,10 +1,10 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
-
+import {Toast} from "native-base";
 const instance = axios.create({
   //   baseURL: "http://127.0.0.1:8000/api/"
 
-  baseURL: "http://172.20.10.9:80/api/"
+  baseURL: "http://172.20.10.9:70/api/"
 });
 
 export const order = studentId => {
@@ -82,7 +82,6 @@ export const checkout = (orderId, navigation) => {
     try {
       const res = await instance.post(`checkout/${orderId}/`);
       const checkout = res.data;
-      console.log("action checkout ---> ", checkout);
       dispatch({
         type: actionTypes.CHECKOUT,
         payload: checkout
@@ -91,7 +90,7 @@ export const checkout = (orderId, navigation) => {
         type: actionTypes.RESET_STUDENT,
         payload: {}
       });
-      navigation.replace("StudentScan");
+      navigation.replace("HomeScanPage");
     } catch (error) {
       console.log("Somthing went wrong with ", error);
     }

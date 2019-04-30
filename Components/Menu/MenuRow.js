@@ -34,8 +34,7 @@ class MenuPage extends Component {
     let { menu } = this.props;
     return (
       <Card
-        style={{ width: "25%", flex: 0 }}
-        className="animated infinite rubberBand delay-2s"
+        style={{ width: "28%",  borderRadius:16, margin:30}}
       >
       <CardItem>
           <Image
@@ -45,24 +44,24 @@ class MenuPage extends Component {
           />
       </CardItem>
       <CardItem>
-        <CardItem>
-          <Text style={{ fontSize: 20, color: "rgb(105, 2, 2)" }}>
-            {menu.price} ر.س
-          </Text>
-        </CardItem>
-        <CardItem style={{marginRight:8,}}>
-          <Text
-            style={{
-              fontSize: 20,
-              textAlign: "center",
-              color: "rgb(84, 97, 112)"
-            }}
-          >
-            {menu.name}
-          </Text>
-        </CardItem>
+          <Left>
+            <Text style={{ fontSize: 20, color: "rgb(105, 2, 2)" }}>
+              {menu.price} ر.س
+            </Text>
+          </Left>
+          <Right>
+            <Text
+              style={{
+                fontSize: 20,
+                textAlign: "center",
+                color: "rgb(84, 97, 112)"
+              }}
+            >
+              {menu.name}
+            </Text>
+          </Right>
       </CardItem>
-      <View style={{flexDirection: "row",}}>
+      <View style={{flexDirection: "row", marginTop:10, marginBottom:8}}>
             <Left>
               <Button transparent>
                 <Icon
